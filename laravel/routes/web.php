@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index');
 
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', 'NewsController@categories');
+Route::get('/news/{category}', 'NewsController@categoryNews');
+Route::get('/news/{category}/{id}', 'NewsController@newsOne');

@@ -2,5 +2,7 @@
 @extends('menu')
 
 @section('content')
-    Собственно новости
+    @foreach($categories as $category)
+        <h2><a href="/news/{{ $category }}">{{$category}}</a></h2><br>
+    @endforeach
 @endsection

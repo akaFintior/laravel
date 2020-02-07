@@ -2,5 +2,6 @@
 @extends('menu')
 
 @section('content')
-    <h1>Добро пожаловать!</h1>
+    <h2>{{ $news['title'] }}</h2>
+    <p>{{ $news['text'] }}</p>
 @endsection
