@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+}
+main {
+    min-height: calc(100vh - 88px);
+}
+header {
+    background-color: #636b6f;
+    text-align: center;
+}
+footer {
+    background-color: #636b6f;
+    text-align: center;
+}

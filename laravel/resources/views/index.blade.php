@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @extends('menu')
+@extends('header')
+@extends('footer')
 
 @section('content')
-    <h1>Добро пожаловать!</h1>
+    <main>
+        <h1>Добро пожаловать!</h1>
+    </main>
 @endsection

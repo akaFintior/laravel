@@ -5,8 +5,6 @@
 
 @section('content')
     <main>
-    @foreach($categories as $category)
-        <h2><a href="/news/{{ $category }}">{{$category}}</a></h2><br>
-    @endforeach
+        <h3>Админка</h3>
     </main>
 @endsection

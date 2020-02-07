@@ -16,3 +16,5 @@ Route::get('/', 'HomeController@index');
 Route::get('/news', 'NewsController@categories');
 Route::get('/news/{category}', 'NewsController@categoryNews');
 Route::get('/news/{category}/{id}', 'NewsController@newsOne');
+
+Route::get('/admin', 'Admin\IndexController@index');
