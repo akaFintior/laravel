@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/news', 'NewsController@categories');
-Route::get('/news/{category}', 'NewsController@categoryNews');
-Route::get('/news/{category}/{id}', 'NewsController@newsOne');
+Route::get('/news', 'NewsController@categories')->name('news');
+Route::get('/news/{category}', 'NewsController@categoryNews')->name('categNews');
+Route::get('/news/{category}/{id}', 'NewsController@newsOne')->name('newsOne');
 
-Route::get('/admin', 'Admin\IndexController@index');
+Route::get('/admin', 'Admin\IndexController@index')->name('admin');
