@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @extends('menu')
-@extends('header')
-@extends('footer')
+@extends('layouts.header')
+@extends('layouts.footer')
 
 @section('content')
     <main>

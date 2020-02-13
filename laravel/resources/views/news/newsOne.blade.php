@@ -5,6 +5,7 @@
 
 @section('content')
     <main>
-        <h3>Админка</h3>
+        <h2>{{ $news['title'] }}</h2>
+        <p>{{ $news['text'] }}</p>
     </main>
 @endsection

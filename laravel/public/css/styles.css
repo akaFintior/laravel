@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 main {
-    min-height: calc(100vh - 88px);
+    min-height: calc(100vh - 128px);
 }
 header {
     background-color: #636b6f;
