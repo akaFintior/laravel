@@ -5,6 +5,6 @@
 
 @section('content')
     <main>
-        <h1>Добро пожаловать!</h1>
+        <h3>Админка</h3>
     </main>
 @endsection

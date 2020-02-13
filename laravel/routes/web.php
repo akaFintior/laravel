@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', 'NewsController@categories')->name('news');
+Route::get('/news/{category}', 'NewsController@categoryNews')->name('categNews');
+Route::get('/news/{category}/{id}', 'NewsController@newsOne')->name('newsOne');
+
+Route::get('/admin', 'Admin\IndexController@index')->name('admin');
