@@ -1,7 +1,11 @@
 @extends('layouts.main')
-@extends('menu')
+@extends('menu.adminMenu')
 @extends('layouts.header')
 @extends('layouts.footer')
+
+@section('title')
+    Админка
+@endsection
 
 @section('content')
     <main>

@@ -22,7 +22,16 @@ Route::group(
     Route::get('/one/{id}', 'NewsController@newsOne')->name('one');
     Route::get('/categories', 'NewsController@categories')->name('categories');
     Route::get('/category/{id}', 'NewsController@categoryNews')->name('categoryId');
+    Route::get('/add', 'NewsController@addNews')->name('addNews');
 }
 );
 
-Route::get('/admin', 'Admin\IndexController@index')->name('admin');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/index', 'IndexController@index')->name('admin');
+    Route::get('/test1', 'IndexController@test1')->name('test1');
+    Route::get('/test2', 'IndexController@test2')->name('test2');
+});

@@ -1,7 +1,11 @@
 @extends('layouts.main')
-@extends('menu')
+@extends('menu.mainMenu')
 @extends('layouts.header')
 @extends('layouts.footer')
+
+@section('title')
+    {{ $category }}
+@endsection
 
 @section('content')
     <main>
