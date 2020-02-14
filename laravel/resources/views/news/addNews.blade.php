@@ -9,7 +9,8 @@
 
 @section('content')
     <main>
-        <form>
+        <form method="POST" action="{{ route('news.addNews') }}">
+            @method('GET')
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
                        checked>
@@ -35,6 +36,7 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                           placeholder="Текст новости" required></textarea>
             </div>
+            @csrf
             <input type="submit" value="Добавить новость">
         </form>
     </main>
