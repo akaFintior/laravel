@@ -35,3 +35,8 @@ Route::group([
     Route::get('/test1', 'IndexController@test1')->name('test1');
     Route::get('/test2', 'IndexController@test2')->name('test2');
 });
+
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
