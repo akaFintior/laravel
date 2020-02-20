@@ -9,10 +9,10 @@
 
 @section('content')
     <div class="container">
+        <h2 class="row justify-content-center">Новости по категории {{ $category }}</h2>
         <div class="row justify-content-center">
-            <h2>Новости по категории {{ $category }}</h2>
             @forelse($news as $item)
-                <div class="col-md-12 card">
+                <div class="col-md-6 card">
                     <div class="card-body">
                         <h2>{{ $item['title'] }}</h2>
                         @if (!$item['isPrivate'])

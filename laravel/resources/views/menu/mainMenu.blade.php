@@ -17,6 +17,9 @@
                     <a class="nav-link {{ request()->routeIs('news.categories') ? 'active' : '' }}" href="{{ route('news.categories') }}">Категории</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Связаться с нами</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.admin') ? 'active' : '' }}" href="{{ route('admin.admin') }}">Админка</a>
                 </li>
             </ul>

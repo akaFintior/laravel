@@ -36,6 +36,6 @@ Route::group([
     Route::match(['post','get'],'/addNews', 'IndexController@addNews')->name('addNews');
 });
 
-
 Auth::routes();
 
+Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');
