@@ -1,15 +1,26 @@
-@extends('layouts.main')
-@extends('menu.mainMenu')
-@extends('layouts.header')
-@extends('layouts.footer')
+@extends('layouts.app')
 
-@section('title')
-    Новости {{ $news['title'] }}
+@section('title', $news['title'])
+
+@section('menu')
+    @include('menu.mainMenu')
 @endsection
 
 @section('content')
-    <main>
-        <h2>{{ $news['title'] }}</h2>
-        <p>{{ $news['text'] }}</p>
-    </main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ $news['title'] }}</div>
+                    <div class="card-body">
+                        @if (!$news['isPrivate'])
+                            <p>{{ $news['text'] }}</p>
+                        @else
+                            <br>Нет прав!
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

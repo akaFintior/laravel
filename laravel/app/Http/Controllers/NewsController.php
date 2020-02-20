@@ -41,8 +41,5 @@ class NewsController extends Controller
             return redirect(route('news.all'));
 
     }
-    public function addNews()
-    {
-        return view('news.addNews');
-    }
+
 }
