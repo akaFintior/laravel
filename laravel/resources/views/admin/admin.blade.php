@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@extends('menu.mainMenu')
+@extends('menu.adminMenu')
 @extends('layouts.header')
 @extends('layouts.footer')
 
 @section('title')
-    Главная
+    Админка
 @endsection
 
 @section('content')
     <main>
-        <h1>Добро пожаловать!</h1>
+        <h3>Админка</h3>
     </main>
 @endsection

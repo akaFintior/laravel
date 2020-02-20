@@ -2,96 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $news = [
-        'sport' => [
-            [
-                'id' => 1,
-                'title' => 'Футбол',
-                'text' => 'Новость про футбол'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Баскетбол',
-                'text' => 'Новость про баскетбол'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Волейбол',
-                'text' => 'Новость про волейбол'
-            ]
-        ],
-        'politics' => [
-            [
-                'id' => 4,
-                'title' => 'Внешняя политика',
-                'text' => 'Тут какая-то новость о внешней политике'
-            ],
-            [
-                'id' => 5,
-                'title' => 'Внутренняя политика',
-                'text' => 'Тут какая-то новость о внутренней политике'
-            ],
-        ],
-        'music' => [
-            [
-                'id' => 6,
-                'title' => 'Новости поп-музыки',
-                'text' => 'Новости о новых появившихся исполнителях поп-музыки'
-            ],
-            [
-                'id' => 7,
-                'title' => 'Новости рок-музыки',
-                'text' => 'Новости о новых появившихся исполнителях рок-музыки'
-            ],
-            [
-                'id' => 8,
-                'title' => 'Новости хип-хоп музыки',
-                'text' => 'Новости о новых появившихся исполнителях хип-хоп музыки'
-            ],
-            [
-                'id' => 9,
-                'title' => 'Топ недели',
-                'text' => 'Популярные исполнители этой недели'
-            ],
-        ]
-    ];
-    private $categories = [];
-    private $categoryNews = [];
-
-    protected function categories() {
-        foreach ($this->news as $category => $news) {
-            $categories[] = $category;
-        }
-        return view('news', ['categories' => $categories]);
+    public function news() {
+        return view('news.news', ['news' => News::getNews()]);
     }
 
-    protected function categoryNews($category) {
-        foreach ($this->news as $cat => $news) {
-            if ($cat == $category) {
-                $categoryNews = $news;
+    public function categories() {
+        return view('news.newsCategory', ['categories' => News::$category]);
+    }
+
+    protected function categoryNews($id) {
+        $news = [];
+
+        foreach (News::$category as $item) {
+            if ($item['name'] == $id) $id = $item['id'];
+        }
+
+        if (array_key_exists($id, News::$category)) {
+            $name = News::$category[$id]['category'];
+            foreach (News::getNews() as $item) {
+                if ($item['categoryId'] == $id)
+                    $news[] = $item;
             }
-        }
-        return view('newsCategory', ['news' => $categoryNews, 'category' => $category]);
+            return view('news.oneCategory', ['news' => $news, 'category' => $name]);
+        } else
+            return redirect(route('news.categories'));
     }
 
-    protected function newsOne($category, $id) {
-        $news = $this->getNewsId($category, $id);
-        return view('newsOne', ['news' => $news]);
-    }
+    public function newsOne($id)
+    {
+        if (array_key_exists($id, News::$news))
+            return view('news.newsOne', ['news' => News::$news[$id]]);
+        else
+            return redirect(route('news.all'));
 
-    private function getNewsId($category, $id) {
-        foreach ($this->news as $cat => $news) {
-            if ($cat == $category) {
-                foreach ( $news as $index => $newsOne) {
-                    if ($newsOne['id'] == $id) {
-                        return $newsOne;
-                    }
-                }
-            }
-        }
+    }
+    public function addNews()
+    {
+        return view('news.addNews');
     }
 }

@@ -11,10 +11,32 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/news', 'NewsController@categories')->name('news');
-Route::get('/news/{category}', 'NewsController@categoryNews')->name('categNews');
-Route::get('/news/{category}/{id}', 'NewsController@newsOne')->name('newsOne');
+Route::group(
+    [
+        'prefix' => 'news',
+        'as' => 'news.'
+    ], function () {
+    Route::get('/all', 'NewsController@news')->name('all');
+    Route::get('/one/{id}', 'NewsController@newsOne')->name('one');
+    Route::get('/categories', 'NewsController@categories')->name('categories');
+    Route::get('/category/{id}', 'NewsController@categoryNews')->name('categoryId');
+    Route::get('/add', 'NewsController@addNews')->name('addNews');
+}
+);
 
-Route::get('/admin', 'Admin\IndexController@index')->name('admin');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/index', 'IndexController@index')->name('admin');
+    Route::get('/test1', 'IndexController@test1')->name('test1');
+    Route::get('/test2', 'IndexController@test2')->name('test2');
+});
+
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
