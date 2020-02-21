@@ -18,9 +18,9 @@
                     </div>
                     <div class="form-group">
                         <label for="newsCategory">Категория новости</label>
-                        <select name="category" class="form-control" id="newsCategory">
+                        <select name="categoryId" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item['id'] == old('category')) selected @endif value="{{ $item['id'] }}">{{ $item['category'] }}</option>
+                                <option @if ($item['id'] == old('categoryId')) selected @endif value="{{ $item['id'] }}">{{ $item['category'] }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse

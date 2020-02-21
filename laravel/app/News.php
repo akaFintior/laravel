@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class News extends Model
 {
@@ -88,7 +89,25 @@ class News extends Model
             'name' => 'music'
         ],
     ];
-    public static function getNews() {
-        return static::$news;
+
+    public static function getNews()
+    {
+        // проверяем все файлы в Storage и достаём только те, что с приставкой .json
+        $files = Storage::files('/');
+        $news = static::$news;
+        foreach ($files as $file) {
+            if (strpos($file, '.json')) {
+                // StdObject приобразовываем к массиву
+                $data = array_map(function ($obj) {
+                    return (array)$obj;
+                }, array(json_decode(Storage::get($file))));
+                // добавляем отсутствующие поля в новости
+                if (!array_key_exists('isPrivate', $data))
+                    $data[0]['isPrivate'] = false;
+                $data[0]['id'] = count($news) + 1;
+                $news[] = $data[0];
+            }
+        }
+        return $news;
     }
 }

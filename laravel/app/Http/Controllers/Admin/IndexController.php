@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class IndexController extends Controller
 {
@@ -31,7 +32,9 @@ class IndexController extends Controller
     {
         if ($request->isMethod('post')) {
             $request->flash();
-            return redirect()->route('admin.addNews');
+            // здесь сохраняем в файл с названием полученным из title + .json
+            Storage::disk('local')->put($request->get('title') . '.json', json_encode($request->except('_token')), JSON_UNESCAPED_UNICODE);
+            return redirect()->route('admin.admin');
         }
 
         return view('admin.addNews', ['categories' => News::$category]);
