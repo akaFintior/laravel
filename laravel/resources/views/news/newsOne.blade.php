@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $news['title'])
+@section('title', $news->title)
 
 @section('menu')
     @include('menu.mainMenu')
@@ -11,10 +11,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ $news['title'] }}</div>
+                    <div class="card-header">{{ $news->title }}</div>
                     <div class="card-body">
-                        @if (!$news['isPrivate'])
-                            <p>{{ $news['text'] }}</p>
+                        @if (!$news->is_private)
+                            <p>{{ $news->inform }}</p>
                         @else
                             <br>Нет прав!
                         @endif

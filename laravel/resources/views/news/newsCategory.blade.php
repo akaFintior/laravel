@@ -13,8 +13,8 @@
             @forelse($categories as $item)
                 <div class="col-md-4 card">
                     <div class="card-body">
-                        <h2>{{ $item['category'] }}</h2>
-                        <a href="{{ route('news.categoryId', $item['name']) }}">Смотреть новости...</a>
+                        <h2>{{ $item->name }}</h2>
+                        <a href="{{ route('news.categoryId', $item->id) }}">Смотреть новости...</a>
                     </div>
                 </div>
             @empty

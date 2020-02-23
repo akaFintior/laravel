@@ -4,29 +4,28 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
     public function news() {
-        return view('news.news', ['news' => News::getNews()]);
+        $news = DB::table('news')->get();
+        return view('news.news', ['news' => $news]);
     }
 
     public function categories() {
-        return view('news.newsCategory', ['categories' => News::$category]);
+        $categories = DB::table('categories')->get();
+        return view('news.newsCategory', ['categories' => $categories]);
     }
 
     protected function categoryNews($id) {
         $news = [];
-
-        foreach (News::$category as $item) {
-            if ($item['name'] == $id) $id = $item['id'];
-        }
-
-        if (array_key_exists($id, News::$category)) {
-            $name = News::$category[$id]['category'];
-            foreach (News::getNews() as $item) {
-                if ($item['categoryId'] == $id)
+        $category = DB::table('categories')->find($id);
+        if ($category) {
+            $name = $category->name;
+            foreach (DB::table('news')->get() as $item) {
+                if ($item->category_id == $id)
                     $news[] = $item;
             }
             return view('news.oneCategory', ['news' => $news, 'category' => $name]);
@@ -36,11 +35,13 @@ class NewsController extends Controller
 
     public function newsOne($id)
     {
-        if (array_key_exists($id, News::getNews()))
-            return view('news.newsOne', ['news' => News::getNews()[$id]]);
-        else
-            return redirect(route('news.all'));
+        $news = DB::table('news')->find($id);
 
+        if (empty($news)) {
+            return redirect(route('news.all'));
+        }
+
+        return view('news.newsOne', ['news' => $news]);
     }
 
 }
