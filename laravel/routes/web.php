@@ -22,7 +22,6 @@ Route::group(
     Route::get('/one/{id}', 'NewsController@newsOne')->name('one');
     Route::get('/categories', 'NewsController@categories')->name('categories');
     Route::get('/category/{id}', 'NewsController@categoryNews')->name('categoryId');
-    Route::get('/add', 'NewsController@addNews')->name('addNews');
 }
 );
 
@@ -34,9 +33,9 @@ Route::group([
     Route::get('/index', 'IndexController@index')->name('admin');
     Route::get('/test1', 'IndexController@test1')->name('test1');
     Route::get('/test2', 'IndexController@test2')->name('test2');
+    Route::match(['post','get'],'/addNews', 'IndexController@addNews')->name('addNews');
 });
 
+Auth::routes();
 
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');

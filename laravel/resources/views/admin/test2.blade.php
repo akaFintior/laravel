@@ -1,15 +1,12 @@
-@extends('layouts.main')
-@extends('layouts.header')
-@extends('layouts.footer')
-@extends('menu.adminMenu')
+@extends('layouts.app')
 
-@section('title')
-    @parent Тест 2
+@section('title', 'Админка - Тест 2')
+
+@section('menu')
+    @include('menu.adminMenu')
 @endsection
-
 
 @section('content')
-    <main>
-        <h2>test2</h2>
-    </main>
+    <h2>test2</h2>
 @endsection
+

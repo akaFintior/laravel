@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -35,14 +36,11 @@ class NewsController extends Controller
 
     public function newsOne($id)
     {
-        if (array_key_exists($id, News::$news))
-            return view('news.newsOne', ['news' => News::$news[$id]]);
+        if (array_key_exists($id, News::getNews()))
+            return view('news.newsOne', ['news' => News::getNews()[$id]]);
         else
             return redirect(route('news.all'));
 
     }
-    public function addNews()
-    {
-        return view('news.addNews');
-    }
+
 }
