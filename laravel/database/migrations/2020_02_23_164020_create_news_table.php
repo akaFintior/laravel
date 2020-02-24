@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->comment('Заголовок');
             $table->text('inform')->comment('Новость');
+            $table->text('image')->comment('Картинка');
             $table->integer('category_id')->comment('ID категории');
             $table->boolean('is_private')
                 ->default(false)
