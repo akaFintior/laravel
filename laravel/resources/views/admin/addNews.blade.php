@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form method="POST" action="{{ route('admin.addNews') }}">
+                <form method="POST" action="{{ route('admin.addNews') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="newsTitle">Название новости</label>
@@ -20,7 +20,7 @@
                         <label for="newsCategory">Категория новости</label>
                         <select name="categoryId" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item['id'] == old('categoryId')) selected @endif value="{{ $item['id'] }}">{{ $item['category'] }}</option>
+                                <option @if ($item->id == old('category_id')) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse
@@ -34,10 +34,14 @@
                     </div>
 
                     <div class="form-check">
-                        <input @if (old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
+                        <input @if (old('is_private') == 1) checked @endif name="is_private" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
                         <label class="form-check-label" for="newsPrivate">
                             Новость приватная?
                         </label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="image">
                     </div>
 
                     <div class="form-group">
