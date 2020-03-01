@@ -14,10 +14,13 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('name')->comment('Название категории');
-            $table->timestamps();
+            $table->bigIncrements('id')->unsigned();
+            $table->string('category')->comment('Название категории');
+            $table->string('name')->comment('Псевдомин категории для url');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
+        (new CategorySeeder())->run();
     }
 
     /**
@@ -30,5 +33,3 @@ class CreateCategoriesTable extends Migration
         Schema::dropIfExists('categories');
     }
 }
-
-
