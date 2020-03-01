@@ -15,6 +15,9 @@
                     <a class="nav-link {{ request()->routeIs('admin.addNews') ? 'active' : '' }}" href="{{ route('admin.addNews') }}">Добавить новость</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">Категории</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.test1') ? 'active' : '' }}" href="{{ route('admin.test1') }}">Скачать страницу</a>
                 </li>
                 <li class="nav-item">

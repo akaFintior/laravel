@@ -39,8 +39,12 @@ Route::group([
 
     Route::get('/test1', 'IndexController@test1')->name('test1');
     Route::get('/test2', 'IndexController@test2')->name('test2');
+
+    Route::resource('categories', 'CategoryController');
 });
 
 Auth::routes();
 
 Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');
+
+
