@@ -13,7 +13,8 @@
                 <div class="col-md-6 card">
                     <div class="card-body">
                         <h2>{{ $item->title }}</h2>
-                        <div class="card-img" style="background-image: url({{ $item->image ?? asset('img/default.jpg') }})"></div>
+                        <div class="card-img"
+                             style="background-image: url({{ $item->image ?? asset('img/default.jpg') }})"></div>
                         @if (!$item->is_private)
                             <a href="{{ route('news.one', $item->id) }}">Подробнее...</a>
                         @endif
@@ -22,6 +23,7 @@
             @empty
                 <p>Нет новостей</p>
             @endforelse
+            {{ $news->links() }}
         </div>
     </div>
 @endsection
