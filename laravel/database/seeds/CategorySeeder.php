@@ -14,15 +14,18 @@ class CategorySeeder extends Seeder
         $category = [
             [
                 "category" => "Спорт",
-                "name" => "sport"
+                "name" => "sport",
+                "image" => asset('img/sport.jpg')
             ],
             [
                 "category" => "Политика",
-                "name" => "politics"
+                "name" => "politics",
+                "image" => asset('img/politics.jpg')
             ],
             [
                 "category" => "Музыка",
-                "name" => "music"
+                "name" => "music",
+                "image" => asset('img/music.png')
             ],
         ];
 

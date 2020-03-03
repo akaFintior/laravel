@@ -37,7 +37,7 @@ class NewsController extends Controller
     public function categories()
     {
         return view('news.newsCategory', [
-                'categories' => Category::query()->select(['id', 'category', 'name'])->get()
+                'categories' => Category::all()
             ]
         );
     }
