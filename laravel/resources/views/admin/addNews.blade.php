@@ -16,11 +16,25 @@
                     @csrf
                     <div class="form-group">
                         <label for="newsTitle">Название новости</label>
+                        @if ($errors->has('title'))
+                            <div class="alert alert-danger" role="alert">
+                                @foreach ($errors->get('title') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <input name="title" type="text" class="form-control" id="newsTitle"
                                value="{{ $news->title ?? old('title') }}">
                     </div>
                     <div class="form-group">
                         <label for="newsCategory">Категория новости</label>
+                        @if ($errors->has('category_id'))
+                            <div class="alert alert-danger" role="alert">
+                                @foreach ($errors->get('category_id') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
                                 <option @if ($item->id == old('category')) selected
@@ -28,12 +42,20 @@
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse
+                                <option value="55">не верная категория</option>
                         </select>
 
                     </div>
 
                     <div class="form-group">
                         <label for="newsText">Текст новости</label>
+                        @if ($errors->has('inform'))
+                            <div class="alert alert-danger" role="alert">
+                                @foreach ($errors->get('inform') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <textarea name="inform" class="form-control" rows="5"
                                   id="newsText">{{ $news->inform ?? old('inform') }}</textarea>
                     </div>
@@ -48,6 +70,13 @@
                     </div>
 
                     <div class="form-group">
+                        @if ($errors->has('image'))
+                            <div class="alert alert-danger" role="alert">
+                                @foreach ($errors->get('image') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <input type="file" name="image">
                     </div>
 

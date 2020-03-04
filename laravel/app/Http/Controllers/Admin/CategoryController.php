@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use DemeterChain\C;
 use Illuminate\Http\Request;
+use Storage;
 
 class CategoryController extends Controller
 {
@@ -40,6 +41,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $cat = new Category();
+        if ($request->file('image')) {
+            $path = Storage::putFile('public', $request->file('image'));
+            $url = Storage::url($path);
+            $cat->image = $url;
+        }
+        $this->validate($request, Category::rules(), [], Category::attributeNames());
         $cat->fill($request->all())->save();
         return redirect()->route('admin.categories.index')->with('success', 'Категория успешно создана!');
     }
@@ -76,10 +83,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $cat = Category::find($id);
-            $cat->fill($request->all())->save();
+        $cat = Category::find($id);
+        if ($request->file('image')) {
+            $path = Storage::putFile('public', $request->file('image'));
+            $url = Storage::url($path);
+            $cat->image = $url;
+        }
+        $this->validate($request, Category::rules(), [], Category::attributeNames());
+        $cat->fill($request->all())->save();
 
-            return redirect()->route('admin.categories.index')->with('success', 'Категория успешно изменена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно изменена!');
     }
 
     /**
