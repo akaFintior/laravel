@@ -37,10 +37,10 @@ Route::group([
     Route::match(['post', 'get'], '/users/{id?}', 'ProfileController@adminConf')->name('adminConf');
 
     Route::get('/index', 'NewsController@all')->name('admin');
-    Route::match(['post','get'],'/addNews', 'NewsController@addNews')->name('addNews');
-    Route::match(['post','get'],'/addNews', 'NewsController@addNews')->name('addNews');
+    Route::get('/addNews', 'NewsController@addNews')->name('addNews');
+    Route::post('/addNews', 'NewsController@addNews')->name('addNews')->middleware('validator:App\News');
     Route::get('/updateNews{news}', 'NewsController@update')->name('updateNews');
-    Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews');
+    Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews')->middleware('validator:App\News');
     Route::get('/deleteNews{news}', 'NewsController@delete')->name('deleteNews');
 
     Route::get('/test1', 'IndexController@test1')->name('test1');

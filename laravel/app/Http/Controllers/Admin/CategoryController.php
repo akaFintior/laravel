@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\News;
+use App\User;
 use DemeterChain\C;
 use Illuminate\Http\Request;
 use Storage;
@@ -103,7 +105,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+
         $cat = Category::find($id);
+        if (count(News::all()->where('category_id', '=', $id)) > 0) {
+            return redirect()->route('admin.categories.index')->with('alert', 'Невозможно удалить категорию, в которой есть новости!');
+        }
         $cat->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена!');
     }

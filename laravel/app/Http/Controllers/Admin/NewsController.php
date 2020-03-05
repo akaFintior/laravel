@@ -34,7 +34,6 @@ class NewsController extends Controller
                 $url = Storage::url($path);
                 $news->image = $url;
             }
-            $this->validate($request, News::rules(), [], News::attributeNames());
             $news->fill($request->all());
             $news->save();
             return redirect()->route('admin.admin')->with('success', 'Новость успешно изменена!');
@@ -58,7 +57,6 @@ class NewsController extends Controller
                 $path = $request->file('image')->store('public');
                 $news->image = Storage::url($path);
             }
-            $this->validate($request, News::rules(), [], News::attributeNames());
             $news->fill($request->all());
             $news->save();
 
