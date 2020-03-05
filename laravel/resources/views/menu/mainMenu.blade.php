@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -14,14 +15,25 @@
                     <a class="nav-link {{ request()->routeIs('news.all')?'active':'' }}" href="{{ route('news.all') }}">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('news.categories') ? 'active' : '' }}" href="{{ route('news.categories') }}">Категории</a>
+                    <a class="nav-link {{ request()->routeIs('news.categories') ? 'active' : '' }}"
+                       href="{{ route('news.categories') }}">Категории</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Связаться с нами</a>
+                    <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
+                       href="{{ route('contact') }}">Связаться с нами</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.admin') ? 'active' : '' }}" href="{{ route('admin.admin') }}">Админка</a>
-                </li>
+                @if(Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('updateProfile') ? 'active' : '' }}"
+                           href="{{ route('updateProfile') }}">Изменить профиль</a>
+                    </li>
+                    @if(Auth::user()->is_admin)
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.admin') ? 'active' : '' }}"
+                               href="{{ route('admin.admin') }}">Админка</a>
+                        </li>
+                    @endif
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -38,7 +50,8 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
