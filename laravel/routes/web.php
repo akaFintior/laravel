@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'HomeController@index')->name('index');
 
 Route::group(
@@ -18,23 +20,27 @@ Route::group(
         'prefix' => 'news',
         'as' => 'news.'
     ], function () {
-    Route::get('/all', 'NewsController@news')->name('all');
-    Route::get('/one/{news}', 'NewsController@newsOne')->name('one');
-    Route::get('/categories', 'NewsController@categories')->name('categories');
-    Route::get('/category/{id}', 'NewsController@categoryNews')->name('categoryId');
+        Route::get('/all', 'NewsController@news')->name('all');
+        Route::get('/one/{news}', 'NewsController@newsOne')->name('one');
+        Route::get('/categories', 'NewsController@categories')->name('categories');
+        Route::get('/category/{id}', 'NewsController@categoryNews')->name('categoryId');
 }
 );
+Route::match(['post','get'], '/profile', 'Admin\ProfileController@update')->name('updateProfile')->middleware('auth');
 
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
+    'middleware' => ['auth', 'is_admin']
 ], function () {
+    Route::match(['post', 'get'], '/users/{id?}', 'ProfileController@adminConf')->name('adminConf');
+
     Route::get('/index', 'NewsController@all')->name('admin');
-    Route::match(['post','get'],'/addNews', 'NewsController@addNews')->name('addNews');
-    Route::match(['post','get'],'/addNews', 'NewsController@addNews')->name('addNews');
+    Route::get('/addNews', 'NewsController@addNews')->name('addNews');
+    Route::post('/addNews', 'NewsController@addNews')->name('addNews')->middleware('validator:App\News');
     Route::get('/updateNews{news}', 'NewsController@update')->name('updateNews');
-    Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews');
+    Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews')->middleware('validator:App\News');
     Route::get('/deleteNews{news}', 'NewsController@delete')->name('deleteNews');
 
     Route::get('/test1', 'IndexController@test1')->name('test1');
@@ -43,7 +49,7 @@ Route::group([
     Route::resource('categories', 'CategoryController');
 });
 
-Auth::routes();
+
 
 Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');
 

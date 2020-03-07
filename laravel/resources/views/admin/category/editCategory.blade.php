@@ -11,7 +11,7 @@
         <h2 class="row justify-content-center">Новая категория</h2>
         <div class="row justify-content-center">
             <form method="post"
-                  action="{{ route('admin.categories.update', $category) }}">
+                  action="{{ route('admin.categories.update', $category) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="card-img"

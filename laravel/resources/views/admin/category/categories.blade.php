@@ -16,12 +16,12 @@
                         <h2>{{ $item->category }}</h2>
                         <div class="card-img"
                              style="background-image: url({{ $item->image }})"></div>
-                        <a href="{{ route('admin.categories.edit', $item) }}">
-                            <button type="button" class="btn btn-success">Изменить категорию</button>
-                        </a>
                         <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
+                            <a href="{{ route('admin.categories.edit', $item) }}">
+                                <button type="button" class="btn btn-success">Изменить категорию</button>
+                            </a>
                             <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
@@ -31,9 +31,9 @@
             @endforelse
         </div>
         <div class="row justify-content-center">
-        <a href="{{ route('admin.categories.create') }}">
-            <button type="button" class="btn btn-success">Добавить категорию</button>
-        </a>
+            <a href="{{ route('admin.categories.create') }}">
+                <button type="button" class="btn btn-success">Добавить категорию</button>
+            </a>
         </div>
     </div>
 @endsection
