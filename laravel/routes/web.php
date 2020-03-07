@@ -36,6 +36,7 @@ Route::group([
 ], function () {
     Route::match(['post', 'get'], '/users/{id?}', 'ProfileController@adminConf')->name('adminConf');
 
+    Route::get('/parser', 'ParserController@index')->name('parser');
     Route::get('/index', 'NewsController@all')->name('admin');
     Route::get('/addNews', 'NewsController@addNews')->name('addNews');
     Route::post('/addNews', 'NewsController@addNews')->name('addNews')->middleware('validator:App\News');
