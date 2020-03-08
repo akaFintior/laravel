@@ -22,10 +22,6 @@
                        href="{{ route('admin.categories.index') }}">Категории</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('updateProfile') ? 'active' : '' }}"
-                       href="{{ route('updateProfile') }}">Изменить профиль</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.adminConf') ? 'active' : '' }}"
                        href="{{ route('admin.adminConf') }}">Все профили</a>
                 </li>
@@ -64,6 +60,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('updateProfile') }}">Изменить профиль</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

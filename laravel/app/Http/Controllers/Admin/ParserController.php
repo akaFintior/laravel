@@ -36,6 +36,5 @@ class ParserController extends Controller
             $lentaNews->save();
         }
         return redirect()->route('news.categories');
-
     }
 }

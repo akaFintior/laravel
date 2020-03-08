@@ -50,7 +50,23 @@ Route::group([
     Route::resource('categories', 'CategoryController');
 });
 
+Route::get('/auth/vk', [
+    'uses' => 'LoginController@loginVK',
+    'as' => 'vkLogin'
+]);
+Route::get('/auth/vk/response', [
+    'uses' => 'LoginController@responseVK',
+    'as' => 'vkResponse'
+]);
 
+Route::get('/auth/google', [
+    'uses' => 'LoginController@loginGoogle',
+    'as' => 'googleLogin'
+]);
+Route::get('/auth/google/response', [
+    'uses' => 'LoginController@responseGoogle',
+    'as' => 'googleResponse'
+]);
 
 Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');
 

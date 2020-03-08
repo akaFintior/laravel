@@ -22,11 +22,15 @@
                     <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
                        href="{{ route('contact') }}">Связаться с нами</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('vkLogin') ? 'active' : '' }}"
+                       href="{{ route('vkLogin') }}">Зайти через VK</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('googleLogin') ? 'active' : '' }}"
+                       href="{{ route('googleLogin') }}">Зайти через Google</a>
+                </li>
                 @if(Auth::user())
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('updateProfile') ? 'active' : '' }}"
-                           href="{{ route('updateProfile') }}">Изменить профиль</a>
-                    </li>
                     @if(Auth::user()->is_admin)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.admin') ? 'active' : '' }}"
@@ -56,6 +60,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('updateProfile') }}">Изменить профиль</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
