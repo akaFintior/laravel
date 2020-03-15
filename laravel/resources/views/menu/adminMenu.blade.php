@@ -34,6 +34,10 @@
                        href="{{ route('admin.test2') }}">Скачать JSON</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('resources.index') ? 'active' : '' }}"
+                       href="{{ route('resources.index') }}">Ресурсы</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link "
                        href="{{ route('admin.parser') }}">Парсер</a>
                 </li>

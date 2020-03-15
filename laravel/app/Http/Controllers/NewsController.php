@@ -13,9 +13,7 @@ class NewsController extends Controller
     public function news()
     {
 
-        $news = News::query()
-            ->where('isPrivate', false)
-            ->paginate(6);
+        $news = News::query()->paginate(6);
 
         return view('news.news', ['news' => $news]);
 

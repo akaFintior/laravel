@@ -37,7 +37,7 @@
                         @endif
                         <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item->id == old('category')) selected
+                                <option @if ($item->id == (old('category_id') ?? $news->category_id)) selected
                                         @endif value="{{ $item->id }}">{{ $item->category }}</option>
                             @empty
                                 <h2>Нет категории</h2>
@@ -57,7 +57,7 @@
                             </div>
                         @endif
                         <textarea name="inform" class="form-control" rows="5"
-                                  id="newsText">{{ $news->inform ?? old('inform') }}</textarea>
+                                  id="textEdit">{!! old('inform') ?? $news->inform ?? "" !!}</textarea>
                     </div>
 
                     <div class="form-check">
@@ -90,4 +90,16 @@
             </div>
         </div>
     </div>
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('textEdit', options);
+    </script>
 @endsection

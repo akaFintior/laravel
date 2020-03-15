@@ -70,4 +70,5 @@ Route::get('/auth/google/response', [
 
 Route::match(['post', 'get'], '/contact', 'ContactController@contact')->name('contact');
 
+Route::resource('resources', 'ResourceController');
 
