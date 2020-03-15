@@ -42,12 +42,12 @@ class ProfileController extends Controller
             if (!$user->is_admin) {
                 $user->is_admin = 1;
             } else {
-                $user->is_admin =0;
+                $user->is_admin = 0;
             }
             $user->save();
             redirect()->route('admin.adminConf')->with('success', 'Права изменены');
         }
-        return view('admin.users', ['users' => User::all() ]);
+        return view('admin.users', ['users' => User::query()->paginate(10) ]);
     }
 
     protected function ValidateRules() {
