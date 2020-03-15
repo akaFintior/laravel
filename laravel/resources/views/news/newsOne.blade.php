@@ -14,7 +14,7 @@
                     <div class="card-header">{{ $news->title }}</div>
                     <div class="card-img" style="background-image: url({{ $news->image ?? asset('img/default.jpg') }})"></div>
                     <div class="card-body">
-                        @if (!$news->is_private)
+                        @if (!$news->isPrivate || Auth::check())
                             <p>{{ $news->inform }}</p>
                         @else
                             <br>Нет прав!
